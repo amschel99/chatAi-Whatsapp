@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "puppeteer": "^19.5.0",
+    "whatsapp-web.js": "^1.18.4"
+  },
+  "name": "chatai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amschel99/chatAi-Whatsapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amschel99/chatAi-Whatsapp/issues"
+  },
+  "homepage": "https://github.com/amschel99/chatAi-Whatsapp#readme",
+  "description": ""
+}
