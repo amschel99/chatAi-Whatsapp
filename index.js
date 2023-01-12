@@ -1,7 +1,31 @@
 const qrcode = require('qrcode-terminal');
+const { Configuration, OpenAIApi } = require("openai");
+
+
+
+require('dotenv').config()
 
 const { Client } = require('whatsapp-web.js');
+
+            
 const client = new Client();
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+  const askAi= async (prompt)=>{
+    const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: prompt,
+        temperature: 0.5,
+        max_tokens: 1000,
+        top_p: 1,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
+        stop: ["##"]
+      });
+      return response.data.choices[0].text;
+  }
 
 client.on('qr', qr => {
     qrcode.generate(qr, {small: true});
@@ -10,10 +34,35 @@ client.on('qr', qr => {
 client.on('ready', () => {
     console.log('Client is ready!');
 });
-client.on('message', message => {
-    if(message.body==="hi"||"hello")
-	client.sendMessage(message.from, 'Hello, welcome to the chatgpt whatsapp bot.Ask any question and I will do my best to provide you with answers. I was developed by  the open Ai team and I have been trained using large datasets to understand human languange. The node JS server that allows you to interact with the me here on whatsapp  was developed by amschel. More about him at https://amschel.tech');
-});
+
+
+
+
+client.on("message", (message)=>{
+
+    function yourFunction() {
+        return new Promise((resolve, reject) => {
+            askAi(message.body)
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+    yourFunction()
+    .then(response => {
+        client.sendMessage(response)
+    })
+    .catch(error => {
+        client.sendMessage(`an error occured`)
+    });
+      
+    
+})
+
+
 
 
 client.initialize();
