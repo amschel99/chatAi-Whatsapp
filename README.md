@@ -5,7 +5,8 @@
  2. Navigate to the project's directory.
  3. Run ```npm install```
  4. run ```npm run dev```
- 5. scan the qr code.
+ 5. scan the qr code
+ 6. start chatting with the bot
  
  ### There is a bug in linux systems caused by the puppeteer library being used by the whatsapp web js library. Pull requests are welcome
  
