@@ -1,6 +1,6 @@
 # Whatsapp chat bot that uses open Ai textcompletion Api endpoint and whatsapp web js to reply to user queries.
 
-#How to use
+# How to use
  1. clone the project
  2. Navigate to the project's directory.
  3. Run ```npm install```
